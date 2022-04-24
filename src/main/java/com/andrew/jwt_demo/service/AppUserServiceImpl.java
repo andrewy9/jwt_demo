@@ -20,29 +20,34 @@ public class AppUserServiceImpl implements AppUserService{
     private final RoleRepo roleRepo;
 
     @Override
-    public AppUser saveUser(AppUser user) {
+    public AppUser saveAppUser(AppUser user) {
+        log.info("Saving new user {} to the database", user.getName());
         return appUserRepo.save(user);
     }
 
     @Override
     public Role saveRole(Role role) {
+        log.info("Saving new role {} to the database", role.getName());
         return roleRepo.save(role);
     }
 
     @Override
-    public void addRoleToUser(String username, String roleName) {
+    public void addRoleToAppUser(String username, String roleName) {
+        log.info("Adding a role {} to user {}", roleName, username);
         AppUser user = appUserRepo.findByUsername(username);
         Role role = roleRepo.findByName(roleName);
         user.getRoles().add(role);
     }
 
     @Override
-    public AppUser getUser(String username) {
+    public AppUser getAppUser(String username) {
+        log.info("Fetching user {}", username);
         return appUserRepo.findByUsername(username);
     }
 
     @Override
-    public List<AppUser> getUsers() {
+    public List<AppUser> getAppUsers() {
+        log.info("Fetching users");
         return appUserRepo.findAll();
     }
 }
