@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping(path="/api")
 @RequiredArgsConstructor
 public class AppUserResource {
-    private final AppUserServiceImpl appUserService;
+    private final AppUserService appUserService;
 
     @GetMapping(path="/users")
     public ResponseEntity<List<AppUser>> getAppUsers() {
